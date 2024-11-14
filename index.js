@@ -28,3 +28,23 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
+
+client.once("ready", async () => {
+  const commands = [
+    {
+      name: "wiki",
+      description: "Fetches a Wikipedia article.",
+      options: [
+        {
+          name: "query",
+          description: "The query to search for.",
+          type: 3, // String
+          required: true,
+        },
+      ],
+    },
+  ];
+
+  await client.application.commands.set(commands);
+  console.log("Slash commands registered!");
+});
